@@ -12,6 +12,15 @@ pipeline {
                 sh 'mvn clean install'
             }
         }
+	stage('SonarQube Analysis') {
+            environment {
+                scannerHome = tool 'kitty-sonar-scanner'
+            }
+            steps {
+                withSonarQubeEnv('kitty-trends-sonarqube-server')
+                sh '${scannerHome}/bin/sonar-scanner'
+            }
+        }
     }
 }
 
