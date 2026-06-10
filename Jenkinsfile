@@ -17,8 +17,9 @@ pipeline {
                 scannerHome = tool 'kitty-sonar-scanner'
             }
             steps {
-                withSonarQubeEnv('kitty-trends-sonarqube-server')
-                sh '${scannerHome}/bin/sonar-scanner'
+                withSonarQubeEnv('kitty-trends-sonarqube-server'){
+			 sh '${scannerHome}/bin/sonar-scanner'
+		}
             }
         }
     }
